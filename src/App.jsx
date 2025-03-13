@@ -1,14 +1,25 @@
-import React, { useState } from 'react'
-import Navbar from './components/Navbar';
-import Products from './components/Products';
+import React from 'react';
+import  Home from "./Pages/Home";
+import ProductDetail from './Pages/ProductDetail';
+
 
 const App = () => {
-
+      const routes =[
+        {
+          id:0,path:"/", element:<Home/>
+        },
+        {
+          id:1,path:"/products/:slug", element:<ProductDetail/>
+        }
+      ]
   return (
-    <>
-    <Navbar/>
-    <Products/>
-    </>
+    <Routes>
+     {
+      routes.map(({id,path,element,})=>{
+         return  <Route path={path} element={element} key={id}/>
+      })
+     }
+    </Routes>
   );
 };
 
