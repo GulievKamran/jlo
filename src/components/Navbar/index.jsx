@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <div className='flex justify-between items-center bg-slate-800 text-white h-[70px] px-5'>
     <div>
-      <Link to="/" className='text-2xl font-bold'>Logo</Link>
+      <Link to="/" className='text-2xl font-bold'>Kamran Brand</Link>
     </div>
       
       <div className=" hidden md:flex gap-15 items-center ">
