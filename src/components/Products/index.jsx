@@ -28,6 +28,7 @@ const Products = () => {
          <h2 className="my-4 mx-3 line-clamp-3">{description}</h2>
          <h2 className='mt-2 text-red-800 text-2xl font-bold'>{price} AZN</h2>
         </div>
+        <Link className="">hello</Link>
       </div>
     );
   })};
