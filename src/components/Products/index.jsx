@@ -1,39 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import axios from 'axios'
-import { useState } from 'react'
-
 
 
 const Products = () => {
-  const url="https://api.escuelajs.co/api/v1/products"
+  const url="http://localhost:3000/products"
   const [products,setProducts]=useState([]);
 
   useEffect(()=>{
     axios.get(url).then(({data})=>{
-      setProducts(data.products);
+      setProducts(data); 
     });
   },[])
   return (
-    <div className='container mx-auto border-y-indigo-600'>
-   <div className='grid grid-cols-4 g-5 '>
-   {products.map(({id,
-        title,
-        description,
-      images,
-      
-      })=>{
+   <div className='grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-6 px-5'>
+
+   {products
+   .slice  (0,25)
+   .map(({id,title,images,price,category,description})=>{
     return (
-      <div key={id} className='border-1 border-amber-500'>
-        <img src={images[0]} alt={title} className='obj-cover'/>
-         <h2> {title}</h2>
-         <h2>{description}</h2>
+      <div key={id} className="border-1 border-amber-500 relative rounded-md">
+        <img src={images[0]} alt={title} className={`object-cover w-full h-[250px] md:h-[150px] rounded-tl-md rounded-tr-md bg-[url(${images[0]})]`}
+        />
+        <div className='p-2 '>
+        <h2 className='ml-9 truncate'> {title}</h2>
+      
+         <h2 className='absolute top-2 right-2 bg-red-200 px-2 py-0,5 text-sm rounded-md'>{category.name}</h2>
+         <h2 className="my-4 mx-3 line-clamp-3">{description}</h2>
+         <h2 className='mt-2 text-red-800 text-2xl font-bold'>{price} AZN</h2>
+        </div>
       </div>
-    )
-  })
-    }
+    );
+  })};
    </div>
-    </div>
-  )
-}
+  
+  );
+};
 
 export default Products;
