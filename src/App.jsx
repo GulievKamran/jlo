@@ -1,6 +1,8 @@
 import React from 'react';
 import  Home from "./Pages/Home";
 import ProductDetail from './Pages/ProductDetail';
+import { Routes } from 'react-router';
+import { Route } from 'react-router';
 
 
 const App = () => {
@@ -15,7 +17,7 @@ const App = () => {
   return (
     <Routes>
      {
-      routes.map(({id,path,element,})=>{
+      routes.map(({id,path,element})=>{
          return  <Route path={path} element={element} key={id}/>
       })
      }
