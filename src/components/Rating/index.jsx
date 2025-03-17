@@ -21,7 +21,7 @@ const RatingStar=({filled }) =>{
 
 
 
-const Rating = ({ totalStars = 5, rating = 5, ratingId = "" }) =>{
+const Rating = ({ totalStars = 5, rating = 5}) =>{
  
 
   return (
@@ -37,8 +37,8 @@ const Rating = ({ totalStars = 5, rating = 5, ratingId = "" }) =>{
         />
       ))}
       {/* <div>{rating} / {totalStars}</div> */}
-      <div style={{ marginTop: "10px", fontSize:'16px', color: 'gray'}}>
-        Reytinq: {rating} / {totalStars} ({ratingId})
+      <div style={{ fontSize:'16px', color: 'gray'}}>
+        Reytinq: {rating} / {totalStars}
       </div>
     </div>
   );

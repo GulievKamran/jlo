@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 
 const Products = () => {
-  const url="http://localhost:3000/products"
+  const url=import.meta.env.VITE_BACKEND_URL;
   const [products,setProducts]=useState([]);
      
   useEffect(()=>{
