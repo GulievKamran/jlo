@@ -3,6 +3,7 @@ import  Home from "./Pages/Home";
 import ProductDetail from './Pages/ProductDetail';
 import { Routes } from 'react-router';
 import { Route } from 'react-router';
+import NotFound from './Pages/NotFound';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
          return  <Route path={path} element={element} key={id}/>
       })
      }
+     <Route path="*" element={<NotFound />}/>
     </Routes>
   );
 };

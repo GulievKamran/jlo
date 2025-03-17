@@ -5,6 +5,7 @@ import axios from 'axios';
 import Rating from '../../components/Rating';
 import toast, { Toaster } from 'react-hot-toast';
 import DataNoFound from '../../components/DataNoFound';
+import NotFound from '../NotFound';
 
 const ProductDetail = () => {
   const {slug} = useParams();
@@ -16,9 +17,8 @@ const ProductDetail = () => {
     axios.get(url)
       .then(({ data }) => {
         const currentElement = data.find((e) => e.slug === slug);
-        console.log(currentElement);
         setProduct(currentElement);
-        setCurrentImage(currentElement.category?.image);
+        setCurrentImage(currentElement.images[0]);
       })
       .catch((err) => {
         if (err.status === 404) {
@@ -27,7 +27,9 @@ const ProductDetail = () => {
       });
   }, []);
 
-  console.log(product);
+  if(!setProduct.slug) {
+    return <NotFound />;
+  }
 
   return ( 
     <>
@@ -37,8 +39,10 @@ const ProductDetail = () => {
       <div className='border-2 border-amber-500 p-8 grid grid-cols-[1fr_100px] gap-5'>
         <img src={currentImage}/> 
         <div className="grid grid-cols-[100px] grid-rows-[100px_100px_100px] object-cover gap-3">
-          {product.images?.map((image) => {
-            return <img src={image} className='w-full h-full'/>;
+          {product.images?.map
+          ((image,index) => {
+            return <img key={index}
+            src={image} className='w-full h-full'/>;
           })}
         </div>
       </div>
