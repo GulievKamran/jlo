@@ -1,17 +1,20 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import { useParams } from 'react-router';
-import axios from 'axios';
 import Rating from '../../components/Rating';
 import toast, { Toaster } from 'react-hot-toast';
 import DataNoFound from '../../components/DataNoFound';
 import NotFound from '../NotFound';
+import Loader from '../../components/Loader';
+
 
 const ProductDetail = () => {
   const {slug} = useParams();
   const [product, setProduct] = useState({});
   const url = import.meta.env.VITE_BACKEND_URL;
   const [currentImage, setCurrentImage] = useState("");
+  const [isLoading,setIsLoading] =useState(true);
 
   useEffect(() => {
     axios.get(url)
@@ -19,17 +22,28 @@ const ProductDetail = () => {
         const currentElement = data.find((e) => e.slug === slug);
         setProduct(currentElement);
         setCurrentImage(currentElement.images[0]);
+        setIsLoading(false);
       })
       .catch((err) => {
+        setIsLoading(false);
         if (err.status === 404) {
           toast.error("theres prob with backend");
         }
       });
   }, []);
 
-  if(!setProduct.slug) {
+ if(isLoading) {
+    return <Loader />;
+  };
+
+  
+
+
+if(!product.slug) {
     return <NotFound />;
-  }
+  };
+
+ 
 
   return ( 
     <>
