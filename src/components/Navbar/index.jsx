@@ -5,7 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import { useState } from 'react';
 import { SlBasket } from "react-icons/sl";
 
-const Navbar = () => {
+const Navbar = ({searchedText,setSearchedText}) => {
     const [showMobile,setShowMobile]= useState(false);
 
    const links=[
@@ -35,7 +35,12 @@ const Navbar = () => {
       </div>
 
       <div className=' hidden md:flex gap-10 items-center'>
-        <input type="text" placeholder='search' className='border'/>
+        <input type="text"
+        placeholder='search' 
+        value={searchedText}
+        className='border outline-0 px-3 py-1 rounded-2xl
+         placeholder:text-white placeholder:text-xl'
+         onChange={(e)=>setSearchedText(e.target.value)}/>
         <Link to="/basket">
         <SlBasket />
         </Link>
